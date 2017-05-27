@@ -92,6 +92,7 @@ class VentasController extends Controller
     public function update(VentasEditRequest $request, $id)
     {
         $venta = DetalleIngreso::find($id);
+        $venta['descripcion'] = $request->input('descripcion');
         $venta->actualizarVenta($request->input('cantidad'));
         return view('ventas.venta-editada');
     }

@@ -8,6 +8,7 @@
             Ordenar por <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
+            <li><a href="/usuarios/pendientes/ordenar">Esperando habilitación</a></li>
             <li><a href="/usuarios/nombre/ordenar">Nombre</a></li>
             <li><a href="/usuarios/apellido/ordenar">Apellido</a></li>
             <li><a href="/usuarios/documento/ordenar">Documento</a></li>

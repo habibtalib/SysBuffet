@@ -1,0 +1,42 @@
+1) El DocumentRoot del proyecto debe ser la carpeta public del proyecto, de otra manera no va a andar puesto que en public se encuentra el "controlador principal" de Laravel que capta todas las URLs y las deriva.
+2) Importante o las URLS no van a funcionar: 
+    En el archivo de configuración de Apache (/etc/apache2) llamado http.d o apache2.conf se leerá:
+        <Directory /var/www/>
+                Options Indexes FollowSymLinks
+                AllowOverride None
+                Require all granted
+        </Directory>
+    
+        Se debe cambiar AllowOverride None pasar a All --> AllowOverride All.
+3) Ejecutar en la carpeta del proyecto desde una terminal: php artisan key:generate, y luego php artisan 
+NOTA:  Asegurarse que los archivos ocultos .env se encuentren disponibles. En caso que no, siempre hay uno de modelo llamado "_env" que solo hay que ocultar manualmente y listo apra ejecutar php artisan key:generate.
+4)  Darle permisos a la carpeta de Laravel, especialmente la de storage o va a dar error-
+   
+Configurar VirtualHost desde cero:
+    1) Ir a la carpeta de sitios disponibles en  apache2, (cd /etc/apache2/sites-available) 
+    2) Tomar como modelo el 000-default y crear un archivo de configuracion para nuestro nuevo virtualhost de la siguiente manera:
+        a) cp 000-default.conf sysbuffet.info.conf
+        b) nano sysbuffet.info.conf
+            Reemplazar con líneas:
+                    ServerAdmin webmaster@localhost
+                    ServerName sysbuffet.info
+                    DocumentRoot /var/www/html/sysBuffet/public
+            //Nota: ServerName debe ser del mismo nombre que el archivo, pero obviamente sin el conf.
+    3) Ejecutar sudo a2ensite sysbuffet.info para que apache "habilite" el sitio, que basicamente es que copie el archivo que hicimos en la carpeta "vecina" sites-enabled. Esto habilitara el sitio.
+    4) Recargar apache. (service apache2 reload)
+    5) Agregar host virtual a la lista de hosts.
+            a) nano /etc/hosts:
+            127.0.0.1       localhost
+            127.0.1.1       fermin-PC
+            127.0.0.1       sysbuffet.info
+            
+    6) Volver a reiniciar a Apache.
+            
+Listo. Acordarse de habilitar el AllowOverride en la configuración general de Apache para que funcionen las urls.
+
+Creacion de la estructura de la DB y los datos base:
+php artisan migrate
+php artisan db:seed
+
+                
+

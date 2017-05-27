@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\UsuarioEditRequest;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Ubicacion;
@@ -25,7 +26,9 @@ class UsuariosController extends Controller
 
     public function ordenarPor($atributo)
     {  
-        $usuarios = Usuario::orderBy($atributo, 'desc')->paginate(Setting::get('items_paginados'));
+        if ($atributo = 'pendientes'){
+            $usuarios = Usuario::orderBy('habilitado', 'asc')->paginate(Setting::get('items_paginados'));
+        } else $usuarios = Usuario::orderBy($atributo, 'desc')->paginate(Setting::get('items_paginados'));
         return view('usuarios.listar-usuarios', ['items' => $usuarios]);
     }
 
@@ -49,8 +52,8 @@ class UsuariosController extends Controller
      */
     public function store(UsuarioRequest $request)
     {
-        $request->password = bcrypt($request->password);
-        $request->habilitado = 1;
+        $request['password']= bcrypt($request->password);
+        $request['habilitado'] = 1;
         $usuario = new Usuario($request->all());
         $usuario->save();
         return view('usuarios.usuario-insertado');
@@ -88,7 +91,7 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UsuarioRequest $request, $slug)
+    public function update(UsuarioEditRequest $request, $slug)
     {
         $usuario = Usuario::where('slug', $slug)->firstOrFail();
         $usuario->update($request->all());
