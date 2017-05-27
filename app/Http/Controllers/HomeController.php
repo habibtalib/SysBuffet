@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use Setting;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('my-home', ['productosDia' => Menu::traerProductosHoy()]);
+        return view('home.my-home', ['productosDia' => Menu::traerProductosHoy()]);
+    }
+
+    public function about()
+    {
+        return view('home.acerca-de', ['settings' => Setting::all()]);
     }
 }

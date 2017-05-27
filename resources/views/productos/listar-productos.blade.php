@@ -13,7 +13,7 @@
             <li><a href="/productos/proveedor/ordenar">Proveedor</a></li>
             <li><a href="/productos/precio_venta_unitario/ordenar">Precio de venta unitario</a></li>
             <li><a href="/productos/stock/ordenar">Stock</a></li>
-            <li><a href="/productos/stock_minimo/ordenar">Stock mínimo</a></li>
+            <li><a href="/productos/stock_minimo/ordenar">Debajo del stock mínimo</a></li>
             <li><a href="/productos/codigo_barras/ordenar">Código de barras</a></li>
           </ul>
  </div>

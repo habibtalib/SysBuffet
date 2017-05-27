@@ -61,5 +61,10 @@ Route::get('/pedidos/{id}/rechazar', 'PedidosController@rechazarPedido')->middle
 Route::get('/balance/', 'BalanceController@mostrarFechas');
 Route::post('/balance/', 'BalanceController@entregarBalance');
 
+Route::post('/bot', 'BotController@solicitud');
+Route::get('/bot/menuBroadcast', 'BotController@menuBroadcast')->middleware('staff');
+
+Route::get('/about', 'HomeController@about');
+
 Auth::routes();
 ;

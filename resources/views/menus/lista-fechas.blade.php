@@ -16,6 +16,7 @@
   <div class="text-center input-margin">
       <a class="btn btn-warning" href="/home"> Regresar </a>
       {!! Form::button('Enviar datos', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
+      <a class="btn btn-danger" href="/bot/menuBroadcast"> Enviar menú a suscriptores </a>
   </div>
 
 {!! Form::close() !!}
