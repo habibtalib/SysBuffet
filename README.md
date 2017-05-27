@@ -14,7 +14,7 @@ SysBuffet it's an application built using Laravel for managing a buffet or a sim
 
 ## Security Vulnerabilities
 
-This application "is defended" against  all vulnerabilities (and more) that appear in OWASP's TOP 10 most dangerous vulnerabilities.
+This application is protected against all vulnerabilities (and more) that appear in OWASP's TOP 10 most dangerous vulnerabilities.
 
 ## License
 
